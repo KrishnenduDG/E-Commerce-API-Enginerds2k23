@@ -1,0 +1,10 @@
+1) Onboard a SuperAdmin => /superadmin/signUp
+2) Login a SuperAdmin => /superadmin/login
+
+3) Onboard 2 Admins through that SuperAdmin => /superadmin/onboardAdmin
+4) Seperate Login for Both => /admin/login
+
+5) getProducts for everyone => /products(GET)
+
+6) add a Product through Admins => /products(POST)
+7) delete a Product through Admin => /products (DELETE)
