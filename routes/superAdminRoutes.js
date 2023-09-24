@@ -6,6 +6,7 @@ import { checkSuperAdminAuth } from "../middlewares/auth.js";
 
 const router = express.Router();
 
+// SuperAdmin Routes
 router.post("/login",superAdminLogin);
 router.post("/signUp", superAdminSignUp);
 router.post("/onboardAdmin",checkSuperAdminAuth,onboardAdmin)

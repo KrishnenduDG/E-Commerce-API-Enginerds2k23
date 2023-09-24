@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
 import { findAdmin } from "../controllers/AdminController.js";
-import {findSuperAdmin} from "../controllers/superAdminController.js"
+import { findSuperAdmin } from "../controllers/superAdminController.js";
 
 export const checkSuperAdminAuth = (req, res, next) => {
   const authHeader = req.headers["x-access-token"];
@@ -21,17 +21,13 @@ export const checkSuperAdminAuth = (req, res, next) => {
       res.status(403).send({ status: "Failure", msg: "You Don't have access" });
 
     req.targetSuperAdmin = targetSuperAdmin;
-
-  }
-  else{
-    req.targetSuperAdmin = null;
-  }
     next();
-
+  } else {
+    res.status(403).send({ status: "Failure", msg: "Credentials Missing" });
+  }
 };
 
-
-export const checkAdmin = (req,res,next) => {
+export const checkAdmin = (req, res, next) => {
   const authHeader = req.headers["x-access-token"];
 
   if (authHeader) {
@@ -49,9 +45,8 @@ export const checkAdmin = (req,res,next) => {
       res.status(403).send({ status: "Failure", msg: "You Don't have access" });
 
     req.targetAdmin = targetAdmin;
+    next();
   } else {
-    req.targetAdmin = null;
+    res.status(403).send({ status: "Failure", msg: "Credentials Missing" });
   }
-  next();
-
-}
+};

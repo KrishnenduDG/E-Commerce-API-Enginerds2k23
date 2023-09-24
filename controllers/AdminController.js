@@ -12,11 +12,14 @@ export const findAdmin = ({ email, password }) => {
 
 
 export const adminLogin = (req,res) => {
+    // Fetching the Details from Request Body 
     const { email, password } = req.body;
 
+    // Searching for that admin in DB
     const admins = JSON.parse(fs.readFileSync(adminDBPath));
     const targetSuperAdmin = _.find(admins, { email, password });
 
+    // If Found, then create a JWT token and throw to Frontend
     if (targetSuperAdmin !== undefined) {
       try {
         const accessToken = jwt.sign(
@@ -28,7 +31,9 @@ export const adminLogin = (req,res) => {
       } catch (error) {
       res.send({ status: "Failure", msg: "Internal Server Error" });
       }
-    } else {
+    } 
+    // Admin with same email and password not found
+    else {
         res.send({ status: "Failure", msg: "Invalid Credentials" });
     }
 }

@@ -7,7 +7,6 @@ import fs from "fs";
 import superAdminRoutes from "./routes/superAdminRoutes.js";
 import adminRoutes from "./routes/AdminRoutes.js";
 import productRoutes from "./routes/ProductRoutes.js";
-import { adminDBPath, productDBPath, superAdminDBPath } from "./constants/db.js";
 
 dotenv.config();
 
@@ -28,16 +27,12 @@ app.use("/superadmin",superAdminRoutes);
 app.use("/admin", adminRoutes);
 app.use("/products",productRoutes);
 
-
+// Home Route
 app.get("/",(req,res) => {
     res.send("Running!")
 });
 
 
 app.listen(PORT,() => {
-    // fs.writeFileSync(superAdminDBPath,JSON.stringify([]))
-    // fs.writeFileSync(adminDBPath,JSON.stringify([]))
-    // fs.writeFileSync(productDBPath,JSON.stringify([]))
-
     console.log(`Server Listening at http://localhost:${PORT}`);
 })

@@ -5,5 +5,7 @@ import {checkAdmin} from "../middlewares/auth.js"
 
 const router = express.Router();
 
+// Product Routes
 router.get("/",getAllProducts).post("/",checkAdmin,addProduct).delete("/",checkAdmin,deleteProduct);
+
 export default router;
